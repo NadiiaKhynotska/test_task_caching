@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  cache-postgres:
+    image: postgres:16.1
+    ports:
+      - '${POSTGRES_PORT:-5432}:5432'
+    environment:
+      POSTGRES_USER: '${POSTGRES_USER:-postgres}'
+      POSTGRES_PASSWORD: '${POSTGRES_PASSWORD:-password}'
+      POSTGRES_DB: '${POSTGRES_DB:-dvdrental}'
+    volumes:
+      - ./sql/restore.sql:/docker-entrypoint-initdb.d/restore.sql  # SQL скрипт для инициализации
+
+      - ./data:/data
+      - cache_test-api-db:/var/lib/postgresql/data                 # Именованный том для хранения данных
+
+  cache-redis:
+    image: redis:7.2.3
+    ports:
+      - '${REDIS_PORT:-6379}:6379'
+    command: >
+      --requirepass '${REDIS_PASSWORD:-redispass}'
+    restart: unless-stopped
+
+volumes:
+  cache_test-api-db:  # Описание именованного тома
