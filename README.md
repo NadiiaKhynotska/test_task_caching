@@ -19,12 +19,11 @@ $ git clone <repository-url>
 $ cd <repository-directory>
 ```
 ### Install Dependencies:
-
 ```bash
 $ npm install
 ```
 ### Set Up Environment Variables:
-Create a directory environments  in the root directory with the local.env file content:
+Create a directory /environments  in the root directory with the local.env file content:
 ```bash
 APP_PORT=3000
 APP_HOST=localhost
@@ -39,8 +38,10 @@ REDIS_PORT=6379
 REDIS_HOST=localhost
 REDIS_PASSWORD=redispass
 REDIS_URL=redis://localhost:6379
-
 ```
+### Set Up Data for filing up database:
+#### Download DVD Rental Sample Database https://neon.tech/postgresql/postgresql-getting-started/postgresql-sample-database
+#### Create directory /data in the root directory  and put files from zip *.dat
 ### Run Docker Containers:
 ```bash
 # development
