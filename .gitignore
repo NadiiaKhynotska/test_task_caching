@@ -3,6 +3,7 @@
 /node_modules
 /environments
 /environments/local.env
+/data
 # Logs
 logs
 *.log
